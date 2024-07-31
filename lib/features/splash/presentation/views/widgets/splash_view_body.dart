@@ -1,6 +1,9 @@
+import 'package:books_shop/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../../core/utils/assets_images.dart';
+import '../../../../home/presentation/views/home_view.dart';
 import 'sliding_text.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -20,18 +23,11 @@ class _SplashViewBodyState extends State<SplashViewBody>
     // TODO: implement initState
     super.initState();
 
-    animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(
-        seconds: 10,
-      ),
-    );
-    slidingAnimation = Tween<Offset>(
-      begin: const Offset(0, 10),
-      end: Offset.zero,
-    ).animate(animationController);
-    animationController.forward();
+    initSlideAnimation();
+    navigateToHome();
   }
+
+
 
   @override
   void dispose() {
@@ -55,4 +51,32 @@ class _SplashViewBodyState extends State<SplashViewBody>
       ),
     );
   }
+
+  void initSlideAnimation() {
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(
+        seconds: 1,
+      ),
+    );
+    slidingAnimation = Tween<Offset>(
+      begin: const Offset(0, 2),
+      end: Offset.zero,
+    ).animate(animationController);
+    animationController.forward();
+  }
+
+  void navigateToHome() {
+    Future.delayed(
+      const Duration(seconds: 2),
+          () {
+        Get.to(
+              () => const HomeView(),
+          duration: kTransitionDuration,
+          transition: Transition.fadeIn,
+        );
+      },
+    );
+  }
+
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'constants.dart';
 import 'features/splash/presentation/views/splash_view.dart';
@@ -13,7 +14,7 @@ class BooksShop extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Books Shop',
       theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: kPrimaryColor),
