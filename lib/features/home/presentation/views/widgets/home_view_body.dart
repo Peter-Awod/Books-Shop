@@ -1,7 +1,7 @@
-import 'package:books_shop/features/home/presentation/views/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
-import 'custom_list_view_item.dart';
+import 'custom_appbar.dart';
+import 'featured_books_list_view.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -11,7 +11,10 @@ class HomeViewBody extends StatelessWidget {
     return const Column(
       children: [
         CustomAppBar(),
-        CustomListView(),
+        Padding(
+          padding: EdgeInsets.all(20.0),
+          child: FeaturedBooksListView(),
+        ),
       ],
     );
   }
