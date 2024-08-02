@@ -8,9 +8,11 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 40.0,
-        horizontal: 20,
+      padding: const EdgeInsetsDirectional.only(
+        top: 20.0,
+        bottom:40,
+        end: 20,
+
       ),
       child: Row(
         children: [
