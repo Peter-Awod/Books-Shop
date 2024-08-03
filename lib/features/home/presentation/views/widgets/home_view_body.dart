@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/assets_images.dart';
 import '../../../../../core/utils/styles.dart';
+import 'best_seller_item.dart';
 import 'custom_appbar.dart';
 import 'featured_books_list_view.dart';
 
@@ -28,41 +29,17 @@ class HomeViewBody extends StatelessWidget {
             'Best Seller',
             style: Styles.textStyle18,
           ),
-          SizedBox(height: 20,),
-          BestSellerItem(),
-        ],
-      ),
-    );
-  }
-}
-
-class BestSellerItem extends StatelessWidget {
-  const BestSellerItem({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 125,
-      child: Row(
-        children: [
-          AspectRatio(
-            aspectRatio: 2.5 / 4,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                image: const DecorationImage(
-                  image: AssetImage(
-                    AssetsImages.testImage,
-                  ),
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
+          SizedBox(
+            height: 20,
           ),
-          const SizedBox(width: 10,),
-          const Column(children: [],)
+          Padding(
+            padding: EdgeInsetsDirectional.only(end: 20.0),
+            child: BestSellerItem(),
+          ),
         ],
       ),
     );
   }
 }
+
+
