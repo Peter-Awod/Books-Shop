@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../../../../core/utils/styles.dart';
-import 'best_seller_item.dart';
+import 'best_seller_list_view.dart';
 import 'custom_appbar.dart';
 import 'featured_books_list_view.dart';
 
@@ -12,9 +11,8 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const CustomScrollView(
+    return const CustomScrollView(
       physics: BouncingScrollPhysics(),
-
       slivers: [
         SliverToBoxAdapter(
           child: Column(
@@ -27,7 +25,6 @@ class HomeViewBody extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsetsDirectional.only(start: 20),
-
                 child: Text(
                   'Best Seller',
                   style: Styles.textStyle18,
@@ -39,33 +36,10 @@ class HomeViewBody extends StatelessWidget {
             ],
           ),
         ),
-
         SliverFillRemaining(
           child: BestSellerListView(),
         )
       ],
-    );
-
-  }
-}
-
-class BestSellerListView extends StatelessWidget {
-  const BestSellerListView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      padding: EdgeInsets.zero,
-      itemCount: 10,
-      itemBuilder: (context, index) {
-        return const Padding(
-          padding: EdgeInsetsDirectional.symmetric(
-            vertical: 8,
-          ),
-          child: BestSellerItem(),
-        );
-      },
     );
   }
 }
