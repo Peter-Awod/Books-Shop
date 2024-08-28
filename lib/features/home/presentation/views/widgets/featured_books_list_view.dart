@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/widgets/custom_error_message.dart';
 import '../../../../../core/utils/widgets/custom_loading_indicator.dart';
 import '../../manager/featured_books_cubit/featured_books_cubit.dart';
@@ -26,12 +28,17 @@ class FeaturedBooksListView extends StatelessWidget {
                 padding: const EdgeInsetsDirectional.only(
                   end: 8.0,
                 ),
-                child: FeaturedBooksItem(
-                  imageUrl: state
-                              .books[index].volumeInfo!.imageLinks!.thumbnail !=
-                          null
-                      ? state.books[index].volumeInfo!.imageLinks!.thumbnail!
-                      : 'https://ehelperteam.com/wp-content/uploads/2019/09/Broken-images.png',
+                child: GestureDetector(
+                  onTap: () {
+                    GoRouter.of(context).push(AppRouter.kBookDetailsView);
+                  },
+                  child: FeaturedBooksItem(
+                    imageUrl: state
+                                .books[index].volumeInfo!.imageLinks!.thumbnail !=
+                            null
+                        ? state.books[index].volumeInfo!.imageLinks!.thumbnail!
+                        : 'https://ehelperteam.com/wp-content/uploads/2019/09/Broken-images.png',
+                  ),
                 ),
               ),
             ),
