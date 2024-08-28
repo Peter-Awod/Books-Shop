@@ -20,12 +20,19 @@ class FeaturedBooksListView extends StatelessWidget {
             child: ListView.builder(
               padding: const EdgeInsetsDirectional.only(start: 20),
               physics: const BouncingScrollPhysics(),
+              itemCount: state.books.length,
               scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => const Padding(
-                padding: EdgeInsetsDirectional.only(
+              itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsetsDirectional.only(
                   end: 8.0,
                 ),
-                child: FeaturedBooksItem(),
+                child: FeaturedBooksItem(
+                  imageUrl: state
+                              .books[index].volumeInfo!.imageLinks!.thumbnail !=
+                          null
+                      ? state.books[index].volumeInfo!.imageLinks!.thumbnail!
+                      : 'https://ehelperteam.com/wp-content/uploads/2019/09/Broken-images.png',
+                ),
               ),
             ),
           );

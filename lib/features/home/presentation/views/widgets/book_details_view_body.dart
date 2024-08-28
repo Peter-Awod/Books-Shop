@@ -23,7 +23,7 @@ class BookDetailsViewBody extends StatelessWidget {
               Padding(
                 padding:
                     EdgeInsetsDirectional.symmetric(horizontal: width * 0.25),
-                child: const FeaturedBooksItem(),
+                child: const FeaturedBooksItem(imageUrl: 'https://ehelperteam.com/wp-content/uploads/2019/09/Broken-images.png',),
               ),
               const SizedBox(
                 height: 36,

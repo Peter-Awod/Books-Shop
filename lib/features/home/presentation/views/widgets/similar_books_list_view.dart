@@ -17,7 +17,7 @@ class SimilarBooksListView extends StatelessWidget {
           padding: EdgeInsetsDirectional.only(
             end: 8.0,
           ),
-          child: FeaturedBooksItem(),
+          child: FeaturedBooksItem( imageUrl: 'https://ehelperteam.com/wp-content/uploads/2019/09/Broken-images.png',),
         ),
       ),
     );
