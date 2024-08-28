@@ -21,12 +21,9 @@ class HomeRepoImplementation implements HomeRepo {
         endPoint: kGetBooksEndPoint,
       );
       List<BookModel> books = [];
-      data.forEach((key, item) {
+      for (var item in data['items']) {
         books.add(BookModel.fromJson(item));
-      });
-      // for (var item in data['items']){
-      //   books.add(BookModel.fromJson(item));
-      // }
+      }
       return right(books);
     } on Exception catch (error) {
       // TODO
@@ -48,12 +45,10 @@ class HomeRepoImplementation implements HomeRepo {
         endPoint: kGetFeaturedBooksEndPoint,
       );
       List<BookModel> books = [];
-      data.forEach((key, item) {
+
+      for (var item in data['items']) {
         books.add(BookModel.fromJson(item));
-      });
-      // for (var item in data['items']){
-      //   books.add(BookModel.fromJson(item));
-      // }
+      }
       return right(books);
     } on Exception catch (error) {
       // TODO
