@@ -11,11 +11,18 @@ class BestSellerBooksCubit extends Cubit<BestSellerBooksStates> {
     emit(BestSellerBooksLoadingState());
     var result = await homeRepo.fetchBestSellerBooks();
     result.fold(
-      (failure) => {
-        emit(BestSellerBooksFailureState(errorMessage: failure.errorMessage)),
+      (failure) {
+        print('Best Seller Cubit error state ${failure.errorMessage.toString()}');
+
+        emit(
+          BestSellerBooksFailureState(errorMessage: failure.errorMessage),
+        );
       },
-      (books) => {
-        emit(BestSellerBooksSuccessState(books: books)),
+      (books) {
+        print('Best Seller Cubit Success state');
+        emit(
+          BestSellerBooksSuccessState(books: books),
+        );
       },
     );
   }
