@@ -16,27 +16,28 @@ class BestSellerListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BestSellerBooksCubit, BestSellerBooksStates>(
       builder: (context, state) {
-        if (state is BestSellerBooksSuccessState)
-        {
+        if (state is BestSellerBooksSuccessState) {
           return ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             padding: EdgeInsets.zero,
-            itemCount: 10,
+            itemCount: state.books.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsetsDirectional.symmetric(
                   vertical: 8,
                 ),
                 child: GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context).push(AppRouter.kBookDetailsView);
-                    },
-                    child: const BestSellerItem()),
+                  onTap: () {
+                    GoRouter.of(context).push(AppRouter.kBookDetailsView);
+                  },
+                  child: BestSellerItem(
+                    bookModel: state.books[index],
+                  ),
+                ),
               );
             },
           );
-        }
-        else if (state is BestSellerBooksFailureState) {
+        } else if (state is BestSellerBooksFailureState) {
           return CustomErrorMessage(
             errorMessage: state.errorMessage,
           );
