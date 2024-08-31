@@ -25,8 +25,18 @@ class BestSellerItem extends StatelessWidget {
               child: AspectRatio(
                 aspectRatio: 2.5 / 4,
                 child: CachedNetworkImage(
-                  imageUrl: bookModel.volumeInfo!.imageLinks!.thumbnail!,
-                  fit: BoxFit.fill,
+                  imageUrl: bookModel.volumeInfo!.imageLinks?.thumbnail! ??''
+                      // 'https://ehelperteam.com/wp-content/uploads/2019/09/Broken-images.png',
+                  ,
+                      fit: BoxFit.fill,
+                  errorWidget: (context, url, error) => const Column(
+                    children: [
+                      Icon(
+                        Icons.error_outline_outlined,
+                      ),
+                      Text('there is no image to view'),
+                    ],
+                  ),
                 ),
               ),
             ),
