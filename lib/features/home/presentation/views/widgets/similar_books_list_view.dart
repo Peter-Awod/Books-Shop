@@ -8,7 +8,9 @@ import '../../manager/similar_books_cubit/similar_books_states.dart';
 import 'featured_books_item.dart';
 
 class SimilarBooksListView extends StatelessWidget {
-  const SimilarBooksListView({super.key});
+  const SimilarBooksListView({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +23,16 @@ class SimilarBooksListView extends StatelessWidget {
               padding: const EdgeInsetsDirectional.only(start: 20),
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => const Padding(
-                padding: EdgeInsetsDirectional.only(
+              itemCount: state.books.length,
+              itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsetsDirectional.only(
                   end: 8.0,
                 ),
-                child: FeaturedBooksItem( imageUrl: 'https://ehelperteam.com/wp-content/uploads/2019/09/Broken-images.png',),
+                child: FeaturedBooksItem(
+                  imageUrl:
+                      state.books[index].volumeInfo!.imageLinks?.thumbnail ??
+                          '',
+                ),
               ),
             ),
           );

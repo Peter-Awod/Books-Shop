@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../data/models/book_model/book_model.dart';
 import '../manager/similar_books_cubit/similar_books_cubit.dart';
@@ -17,8 +18,8 @@ class BookDetailsView extends StatefulWidget {
 class _BookDetailsViewState extends State<BookDetailsView> {
   @override
   void initState() {
-    BlocProvider.of<SimilarBooksCubit>(context).getSimilarBooks(
-        category: widget.bookModel.volumeInfo!.categories![0]);
+    BlocProvider.of<SimilarBooksCubit>(context)
+        .getSimilarBooks(category: widget.bookModel.volumeInfo!.categories![0]);
     super.initState();
   }
 
@@ -29,7 +30,9 @@ class _BookDetailsViewState extends State<BookDetailsView> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            GoRouter.of(context).pop();
+          },
           icon: const Icon(
             Icons.close,
             size: 30,
@@ -45,9 +48,11 @@ class _BookDetailsViewState extends State<BookDetailsView> {
           ),
         ],
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(20.0),
-        child: BookDetailsViewBody(),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: BookDetailsViewBody(
+          bookModel: widget.bookModel,
+        ),
       ),
     );
   }

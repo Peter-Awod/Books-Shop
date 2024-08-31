@@ -4,12 +4,15 @@ import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../core/utils/styles.dart';
+import '../../../data/models/book_model/book_model.dart';
 import 'books_action_button.dart';
 import 'featured_books_item.dart';
 import 'similar_books_list_view.dart';
 
 class BookDetailsViewBody extends StatelessWidget {
-  const BookDetailsViewBody({super.key});
+  const BookDetailsViewBody({super.key, required this.bookModel});
+
+  final BookModel bookModel;
 
   @override
   Widget build(BuildContext context) {
@@ -23,20 +26,23 @@ class BookDetailsViewBody extends StatelessWidget {
               Padding(
                 padding:
                     EdgeInsetsDirectional.symmetric(horizontal: width * 0.25),
-                child: const FeaturedBooksItem(imageUrl: 'https://ehelperteam.com/wp-content/uploads/2019/09/Broken-images.png',),
+                child: FeaturedBooksItem(
+                    imageUrl:
+                        bookModel.volumeInfo!.imageLinks?.thumbnail ?? ''),
               ),
               const SizedBox(
                 height: 36,
               ),
-              const Text(
-                'The Jungle Book',
+              Text(
+                bookModel.volumeInfo!.title!,
                 style: Styles.textStyle30,
+                textAlign: TextAlign.center,
               ),
               const SizedBox(
                 height: 6,
               ),
-              const Text(
-                'Rudyard Kipling',
+              Text(
+                bookModel.volumeInfo!.authors![0],
                 style: Styles.textStyle20,
               ),
               const SizedBox(
@@ -55,15 +61,15 @@ class BookDetailsViewBody extends StatelessWidget {
                   const SizedBox(
                     width: 10,
                   ),
-                  const Text(
-                    '4.8',
+                  Text(
+                    '${bookModel.volumeInfo!.averageRating ?? 0}',
                     style: Styles.textStyle16,
                   ),
                   const SizedBox(
                     width: 10,
                   ),
                   Text(
-                    '(2390)',
+                    '( ${bookModel.volumeInfo!.ratingsCount ?? 0} )',
                     style: Styles.textStyle14.copyWith(
                       color: const Color(0xff707070),
                     ),
