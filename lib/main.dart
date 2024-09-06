@@ -12,7 +12,7 @@ import 'features/home/presentation/manager/featured_books_cubit/featured_books_c
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  Bloc.observer=MyBlocObserver();
+  Bloc.observer = MyBlocObserver();
   setupServiceLocator();
   runApp(const BooksShop());
 }
@@ -27,11 +27,13 @@ class BooksShop extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) =>
-              FeaturedBooksCubit(getIt.get<HomeRepoImplementation>())..getFeaturedBooks(),
+              FeaturedBooksCubit(getIt.get<HomeRepoImplementation>())
+                ..getFeaturedBooks(),
         ),
         BlocProvider(
           create: (context) =>
-              BestSellerBooksCubit(getIt.get<HomeRepoImplementation>())..getBestSellerBooks(),
+              BestSellerBooksCubit(getIt.get<HomeRepoImplementation>())
+                ..getBestSellerBooks(),
         ),
       ],
       child: MaterialApp.router(

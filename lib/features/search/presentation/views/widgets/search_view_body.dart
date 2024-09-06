@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../constants.dart';
-import '../../../../../core/utils/styles.dart';
+import '../../manage/search_cubit/search_cubit.dart';
 import 'custom_search_text_field.dart';
 import 'search_result_list_view.dart';
 
@@ -19,21 +20,18 @@ class SearchViewBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CustomSearchTextField(),
+          CustomSearchTextField(
+            onSubmitted: (searchString) {
+              BlocProvider.of<SearchCubit>(context)
+                  .getSearch(searchString: searchString);
+            },
+          ),
           const SizedBox(
             height: 32,
           ),
-          Text(
-            'Search Result',
-            style: Styles.textStyle20.copyWith(
-              fontFamily: kHanuman,
-              color: Colors.white54,
-            ),
+          const Expanded(
+            child: SearchResultListView(),
           ),
-          const SizedBox(
-            height: 16,
-          ),
-          const Expanded(child: SearchResultListView(),)
         ],
       ),
     );
