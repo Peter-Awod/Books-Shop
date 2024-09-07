@@ -13,12 +13,8 @@ class HomeRepoImplementation implements HomeRepo {
   HomeRepoImplementation(this.apiService);
 
   @override
-  Future<Either<Failure, List<BookModel>>> fetchBestSellerBooks() async
-  {
-
-
-    try
-    {
+  Future<Either<Failure, List<BookModel>>> fetchBestSellerBooks() async {
+    try {
       var data = await apiService.get(
         endPoint: kGetBooksEndPoint,
       );
@@ -39,8 +35,7 @@ class HomeRepoImplementation implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<BookModel>>> fetchFeaturedBooks() async
-  {
+  Future<Either<Failure, List<BookModel>>> fetchFeaturedBooks() async {
     // TODO: implement fetchBestSellerBooks
 
     try {
@@ -54,7 +49,6 @@ class HomeRepoImplementation implements HomeRepo {
       }
       return right(books);
     } on Exception catch (error) {
-
       if (error is DioException) {
         return left(ServerFailure.fromDioException(error));
       }
@@ -65,13 +59,12 @@ class HomeRepoImplementation implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<BookModel>>> fetchSimilarBooks(String category) async {
-
-
-    try
-    {
+  Future<Either<Failure, List<BookModel>>> fetchSimilarBooks(
+      String category) async {
+    try {
       var data = await apiService.get(
         endPoint: kGetSimilarBooksEndPoint,
+        searchString: category,
       );
       List<BookModel> books = [];
       for (var item in data['items']) {
